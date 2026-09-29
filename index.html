@@ -1,1 +1,103 @@
-<p>Lobby sign starting up</p>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="900">
+<title>CFW Lobby Sign</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Atkinson+Hyperlegible:wght@400;700&display=block">
+<style>
+/* Fills whatever box the Joan "Web page" widget gives it. --u is the layout unit: 1% of the
+   width, capped by height so a shorter widget shrinks the type instead of clipping it. */
+:root { --paper:#ffffff; --ink:#111111; --ink-2:#444444; --ink-3:#888888; --ink-4:#c8c8c8;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif; --body:"Atkinson Hyperlegible",Verdana,Arial,sans-serif;
+  --u:min(1vw, 2.15vh); }
+* { box-sizing:border-box; }
+html,body { margin:0; height:100%; background:var(--paper); color:var(--ink); font-family:var(--body); }
+.sign { height:100%; display:grid; grid-template-rows:auto 1fr auto; overflow:hidden; }
+.s-date { display:flex; justify-content:space-between; align-items:baseline; padding:calc(1.4*var(--u)) calc(3*var(--u)) calc(1*var(--u)); border-bottom:calc(.25*var(--u)) solid var(--ink); }
+.s-date b { font:700 calc(2.1*var(--u))/1 var(--display); font-stretch:90%; }
+.s-date span { font-size:calc(1.3*var(--u)); color:var(--ink-2); }
+.s-body { display:grid; grid-template-columns:1.25fr .8fr 1.15fr; min-height:0; }
+.blk { padding:calc(2.2*var(--u)) calc(2.6*var(--u)); display:flex; flex-direction:column; gap:calc(1.2*var(--u)); min-width:0; min-height:0; }
+.blk + .blk { border-left:calc(.12*var(--u)) solid var(--ink-4); }
+h2 { margin:0; font:700 calc(1.3*var(--u))/1 var(--body); letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); }
+.big-row { display:flex; align-items:baseline; gap:calc(1.2*var(--u)); }
+.big { font:800 calc(7.6*var(--u))/.9 var(--display); font-stretch:80%; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+.big-note { font-size:calc(1.5*var(--u)); line-height:1.25; color:var(--ink-2); }
+.big-note b { color:var(--ink); }
+.days { display:grid; grid-template-columns:repeat(5,1fr); gap:calc(1*var(--u)); flex:1; min-height:0; }
+.day { display:grid; grid-template-rows:1fr auto; gap:calc(.6*var(--u)); min-height:0; }
+.bar { display:flex; flex-direction:column-reverse; align-self:end; min-height:0; }
+.bar i { display:block; min-height:calc(.4*var(--u)); }
+.bar .done { background:var(--ink); }
+.bar .sched { background:repeating-linear-gradient(135deg,var(--ink-3) 0 calc(.28*var(--u)),var(--paper) calc(.28*var(--u)) calc(.56*var(--u))); border:calc(.12*var(--u)) solid var(--ink-3); border-bottom:0; }
+.bar.empty { border-bottom:calc(.2*var(--u)) solid var(--ink-4); }
+.bar .n { font:700 calc(1.6*var(--u))/1 var(--display); text-align:center; padding-bottom:calc(.35*var(--u)); font-variant-numeric:tabular-nums; }
+.dlabel { text-align:center; font:700 calc(1.25*var(--u))/1.1 var(--body); padding:calc(.3*var(--u)) 0; }
+.dlabel small { display:block; font:400 calc(1.05*var(--u))/1.1 var(--display); color:var(--ink-2); }
+.day.is-today .dlabel { background:var(--ink); color:var(--paper); }
+.day.is-today .dlabel small { color:var(--ink-4); }
+.key { display:flex; gap:calc(1.8*var(--u)); font-size:calc(1.1*var(--u)); color:var(--ink-2); }
+.key span { display:inline-flex; align-items:center; gap:calc(.5*var(--u)); }
+.key i { width:calc(1.2*var(--u)); height:calc(1.2*var(--u)); display:inline-block; }
+.key .k-done { background:var(--ink); }
+.key .k-sched { background:repeating-linear-gradient(135deg,var(--ink-3) 0 calc(.28*var(--u)),var(--paper) calc(.28*var(--u)) calc(.56*var(--u))); border:calc(.1*var(--u)) solid var(--ink-3); }
+.stats { list-style:none; margin:0; padding:0; display:grid; gap:calc(.9*var(--u)); }
+.stats li { display:flex; justify-content:space-between; align-items:baseline; font-size:calc(1.55*var(--u)); border-bottom:calc(.1*var(--u)) solid var(--ink-4); padding-bottom:calc(.6*var(--u)); }
+.stats b { font:700 calc(2.2*var(--u))/1 var(--display); font-variant-numeric:tabular-nums; }
+.welcome { margin-top:auto; border:calc(.18*var(--u)) solid var(--ink); padding:calc(1*var(--u)) calc(1.2*var(--u)); font-size:calc(1.45*var(--u)); line-height:1.25; }
+.welcome b { font:700 calc(1.1*var(--u))/1 var(--body); letter-spacing:.12em; text-transform:uppercase; display:block; margin-bottom:calc(.4*var(--u)); }
+.srv { display:grid; gap:calc(1.5*var(--u)); }
+.srv-row { display:grid; gap:calc(.5*var(--u)); }
+.srv-top { display:flex; justify-content:space-between; align-items:baseline; gap:calc(1*var(--u)); }
+.srv-top span { font:700 calc(1.3*var(--u))/1 var(--body); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2); }
+.srv-top em { font-style:normal; font-size:calc(1.15*var(--u)); color:var(--ink-3); }
+.num { font:800 calc(5.4*var(--u))/.95 var(--display); font-stretch:82%; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+.num.sm { font-size:calc(4.2*var(--u)); }
+.meter { height:calc(1.9*var(--u)); border:calc(.15*var(--u)) solid var(--ink); display:flex; position:relative; }
+.meter .done { background:var(--ink); }
+.meter .sched { background:repeating-linear-gradient(135deg,var(--ink-3) 0 calc(.28*var(--u)),var(--paper) calc(.28*var(--u)) calc(.56*var(--u))); }
+.meter .tick { position:absolute; top:calc(-.7*var(--u)); bottom:calc(-.7*var(--u)); width:calc(.2*var(--u)); background:var(--ink); }
+.srv-foot { font-size:calc(1.35*var(--u)); line-height:1.3; color:var(--ink-2); }
+.srv-foot b { color:var(--ink); font-family:var(--display); }
+.s-foot { display:flex; justify-content:space-between; padding:calc(.9*var(--u)) calc(3*var(--u)); border-top:calc(.12*var(--u)) solid var(--ink-4); font-size:calc(1.05*var(--u)); color:var(--ink-3); }
+</style>
+</head>
+<body>
+<div class="sign">
+  <div class="s-date"><b>Tuesday, September 29</b><span>Week of Sep 28 &ndash; Oct 2</span></div>
+  <div class="s-body">
+    <div class="blk">
+      <h2>Deliveries this week</h2>
+      <div class="big-row"><div class="big">35</div><div class="big-note"><b>16 completed</b><br>19 to go &middot; 35 partners</div></div>
+      <div class="days"><div class="day"><div class="bar" style="height:21.4%"><i class="done" style="flex:3"></i><span class="n">3</span></div><div class="dlabel">Mon<small>9/28</small></div></div><div class="day is-today"><div class="bar" style="height:100.0%"><i class="done" style="flex:13"></i><i class="sched" style="flex:1"></i><span class="n">14</span></div><div class="dlabel">Today<small>9/29</small></div></div><div class="day"><div class="bar" style="height:64.3%"><i class="sched" style="flex:9"></i><span class="n">9</span></div><div class="dlabel">Wed<small>9/30</small></div></div><div class="day"><div class="bar" style="height:57.1%"><i class="sched" style="flex:8"></i><span class="n">8</span></div><div class="dlabel">Thu<small>10/1</small></div></div><div class="day"><div class="bar" style="height:7.1%"><i class="sched" style="flex:1"></i><span class="n">1</span></div><div class="dlabel">Fri<small>10/2</small></div></div></div>
+      <div class="key"><span><i class="k-done"></i>Signed</span><span><i class="k-sched"></i>Scheduled</span></div>
+    </div>
+    <div class="blk">
+      <h2>Visitors today</h2>
+      <div class="big-row"><div class="big">0</div><div class="big-note"><b>0 here now</b></div></div>
+      <ul class="stats"><li>Checked in<b>0</b></li><li>Still expected<b>0</b></li></ul>
+      <div class="welcome"><b>Welcome</b>Sign in at the kiosk and your host will be notified.</div>
+    </div>
+    <div class="blk">
+      <h2>Food servings delivered</h2>
+      <div class="srv">
+        <div class="srv-row">
+          <div class="srv-top"><span>Last week</span><em>Sep 21 &ndash; 25</em></div>
+          <div class="num">67,521</div>
+          <div class="meter"><i class="done" style="width:100.0%"></i></div>
+        </div>
+        <div class="srv-row">
+          <div class="srv-top"><span>This week so far</span><em>Sep 28 &ndash; Oct 2</em></div>
+          <div class="num sm">29,481</div>
+          <div class="meter"><i class="done" style="width:43.7%"></i><i class="sched" style="width:51.0%"></i><span class="tick" style="left:calc(100.0% - .1vw)"></span></div>
+        </div>
+        <div class="srv-foot"><b>+ 34,418</b> more on deliveries scheduled this week, which would bring the week to about <b>63,900</b>.</div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>Figures from Fork and Joan &middot; updated 4:05 PM</span><span>Servings count signed deliveries of sales and donations</span></div>
+</div>
+</body>
+</html>
