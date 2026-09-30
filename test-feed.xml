@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+<title>CFW Lobby Sign Image Test</title>
+<link>https://community-food-works.github.io/lobby-sign/</link>
+<description>One-item test: does the Joan RSS widget show an item image?</description>
+<lastBuildDate>Wed, 30 Sep 2026 02:08:59 GMT</lastBuildDate>
+<ttl>15</ttl>
+<item>
+<title>Lobby sign image test</title>
+<description>If you can see the three panels, images work.</description>
+<link>https://community-food-works.github.io/lobby-sign/</link>
+<guid isPermaLink="false">lobby-sign-image-test-1</guid>
+<pubDate>Wed, 30 Sep 2026 02:08:59 GMT</pubDate>
+<enclosure url="https://community-food-works.github.io/lobby-sign/sign-test.png" length="156326" type="image/png"/>
+<media:content url="https://community-food-works.github.io/lobby-sign/sign-test.png" medium="image" type="image/png" width="2560" height="1000"/>
+</item>
+</channel>
+</rss>
