@@ -111,10 +111,10 @@ try {
     // order or sorts newest first.
     const body = items.map((t, i) => [
       '<item>',
-      `<title>Tile ${i} (${t.pos})</title>`,
+      `<title>Tile ${i} (${t.pos}) ${now}</title>`,
       `<description>${g.w}x${g.h} at x ${(i % g.cols) * g.w}, y ${Math.floor(i / g.cols) * g.h}</description>`,
-      `<link>${BASE}/</link>`,
-      `<guid isPermaLink="false">lobby-sign-${g.name}-${t.pos}-${t.hash}</guid>`,
+      `<link>${BASE}/?t=${now}-${i}</link>`,
+      `<guid isPermaLink="false">lobby-sign-${g.name}-${t.pos}-${t.hash}-${now}</guid>`,
       `<pubDate>${new Date(now - i * 60_000).toUTCString()}</pubDate>`,
       `<enclosure url="${t.url}" length="${t.bytes}" type="image/png"/>`,
       `<media:content url="${t.url}" medium="image" type="image/png" width="${g.w}" height="${g.h}"/>`,
