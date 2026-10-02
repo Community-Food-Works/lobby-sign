@@ -1,0 +1,58 @@
+# Publishes the lobby sign to GitHub Pages.
+#
+# The Retool workflow "fork-lobby-sign" commits index.html and then feed.xml every 15 minutes.
+# This job renders index.html at 2560x1440, cuts it into picture tiles with an RSS feed per grid
+# (tools/make-tiles.mjs), and deploys everything. Joan's e-ink sign shows the tiles.
+#
+# Needs: Settings -> Pages -> Source = "GitHub Actions".
+
+name: Render lobby sign
+
+on:
+  push:
+    branches: [main]
+    # feed.xml is the second of Retool's two commits, so both files are fresh by then.
+    paths: ['feed.xml', 'tools/**', '.github/workflows/render.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install puppeteer-core and pngjs
+        run: npm install --no-save --no-audit --no-fund puppeteer-core@25.12.0 pngjs@7.0.0
+
+      - name: Copy the page and feeds
+        run: |
+          mkdir -p _site
+          cp ./*.html ./*.xml _site/
+          cp ./*.png _site/ 2>/dev/null || true
+
+      - name: Render the sign and cut tiles
+        env:
+          GRIDS: 5x1,5x2,5x3
+        run: node tools/make-tiles.mjs
+
+      - uses: actions/configure-pages@v6
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+      - id: deploy
+        uses: actions/deploy-pages@v5
