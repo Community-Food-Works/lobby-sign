@@ -45,7 +45,7 @@ jobs:
 
       - name: Render the sign and cut tiles
         env:
-          GRIDS: 5x1,5x2,5x3
+          GRIDS: 5x3
         run: node tools/make-tiles.mjs
 
       - uses: actions/configure-pages@v6
