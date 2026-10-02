@@ -3,17 +3,17 @@
 <channel>
 <title>CFW Lobby Sign Image Test</title>
 <link>https://community-food-works.github.io/lobby-sign/</link>
-<description>One-item test: does the Joan RSS widget show an item image?</description>
-<lastBuildDate>Wed, 30 Sep 2026 02:08:59 GMT</lastBuildDate>
+<description>One-item test: one 512x512 tile of the sign at native resolution.</description>
+<lastBuildDate>Fri, 02 Oct 2026 11:58:19 GMT</lastBuildDate>
 <ttl>15</ttl>
 <item>
-<title>Lobby sign image test</title>
-<description>If you can see the three panels, images work.</description>
+<title>Tile test</title>
+<description>512x512 tile at native resolution</description>
 <link>https://community-food-works.github.io/lobby-sign/</link>
-<guid isPermaLink="false">lobby-sign-image-test-1</guid>
-<pubDate>Wed, 30 Sep 2026 02:08:59 GMT</pubDate>
-<enclosure url="https://community-food-works.github.io/lobby-sign/sign-test.png" length="156326" type="image/png"/>
-<media:content url="https://community-food-works.github.io/lobby-sign/sign-test.png" medium="image" type="image/png" width="2560" height="1000"/>
+<guid isPermaLink="false">lobby-sign-tile-test-2</guid>
+<pubDate>Fri, 02 Oct 2026 11:58:19 GMT</pubDate>
+<enclosure url="https://community-food-works.github.io/lobby-sign/tile-test.png" length="21810" type="image/png"/>
+<media:content url="https://community-food-works.github.io/lobby-sign/tile-test.png" medium="image" type="image/png" width="512" height="512"/>
 </item>
 </channel>
 </rss>
